@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/asteroids/medium_asteroid.png" type="Texture" id=1]
+[ext_resource path="res://scripts/mediumAsteroid.gd" type="Script" id=2]
+[ext_resource path="res://scenes/smallAsteroid.tscn" type="PackedScene" id=3]
+
+[node name="MediumAsteroid" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+smallAsteroid = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -3, 2, -3, -2, -2, -2, -2, -3, 2, -3, 2, -2, 3, -2, 3, -1, 4, -1, 4, 4, -2, 4, -2, 2 )
+
+[node name="medium_asteroid" type="Sprite" parent="."]
+position = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )

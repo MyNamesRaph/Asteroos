@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/screenspace.gd" type="Script" id=3]
+[ext_resource path="res://scripts/asteroidGenerator.gd" type="Script" id=4]
+[ext_resource path="res://scenes/bigAsteroid.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/menu/gameover.png" type="Texture" id=6]
+[ext_resource path="res://scripts/gameover.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 28.5 )
+
+[node name="Game" type="Node2D"]
+scale = Vector2( 10, 10 )
+
+[node name="Ship" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 31.5 )
+
+[node name="GUI" parent="." instance=ExtResource( 2 )]
+
+[node name="screenspace" type="Area2D" parent="."]
+collision_mask = 7
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="screenspace"]
+position = Vector2( 32, 35.5 )
+shape = SubResource( 1 )
+
+[node name="AsteroidGenerator" type="Node2D" parent="."]
+script = ExtResource( 4 )
+asteroid = ExtResource( 5 )
+
+[node name="gameover" type="Sprite" parent="."]
+visible = false
+position = Vector2( 32, 32 )
+texture = ExtResource( 6 )
+script = ExtResource( 7 )
+[connection signal="body_exited" from="screenspace" to="screenspace" method="_on_screenspace_body_exited"]
