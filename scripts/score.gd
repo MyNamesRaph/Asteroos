@@ -15,7 +15,6 @@ func _process(delta):
 
 func get_score():
 	var score = GlobalData.score
-	print(score)
 	
 	if score < 99999 :
 		score = str(score)

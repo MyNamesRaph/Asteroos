@@ -52,7 +52,6 @@ func get_input():
 		var b = bullet.instance()
 		b.create(bulletOut.global_position /10, rotation)
 		get_parent().add_child(b)
-		print("shot a bullet at " + str(bulletOut.global_position.x) + ", " + str(bulletOut.global_position.y))
 	if right :
 		rotation -= rotSpeed
 	if left :
